@@ -54,7 +54,7 @@ publishing {
             pom {
                 name = project.name
                 description = 'Task Management Library.'
-                url = 'https://github.com/TeamQuantumFusion/Hyphen'
+                url = 'https://github.com/TeamQuantumFusion/Taski'
 
                 licenses {
                     license {
@@ -63,9 +63,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:git://github.com/TeamQuantumFusion/Hyphen.git'
-                    developerConnection = 'scm:git:ssh://github.com:TeamQuantumFusion/Hyphen.git'
-                    url = 'http://github.com/TeamQuantumFusion/Hyphen/tree/rework-9'
+                    connection = 'scm:git:git://github.com/TeamQuantumFusion/Taski.git'
+                    developerConnection = 'scm:git:ssh://github.com:TeamQuantumFusion/Taski.git'
+                    url = 'http://github.com/TeamQuantumFusion/Taski/tree/master'
                 }
                 developers {
                     developer {
