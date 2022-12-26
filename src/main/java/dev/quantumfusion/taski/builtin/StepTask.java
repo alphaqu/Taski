@@ -4,6 +4,9 @@ import dev.quantumfusion.taski.Task;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 /**
@@ -107,6 +110,38 @@ public class StepTask extends AbstractTask {
 
 	public void run(Runnable function) {
 		run(1, null, function);
+	}
+
+	// Do
+	/**
+	 * Iterates through a {@link List} with the consumer. <br>
+	 * By resetting the current task
+	 * @param list List to iterate through.
+	 * @param consumer Value consumer.
+	 * @param <E> Element Type
+	 */
+	public <E> void doForEach(List<E> list, Consumer<E> consumer) {
+		this.reset(list.size());
+		list.forEach(e -> {
+			consumer.accept(e);
+			this.next();
+		});
+	}
+
+	/**
+	 * Iterates through a {@link Map} with the BiConsumer. <br>
+	 * By resetting the current task
+	 * @param map List to iterate through.
+	 * @param consumer Value consumer.
+	 * @param <K> Key Type
+	 * @param <V> Value Type
+	 */
+	public <K, V> void doForEach(Map<K, V> map, BiConsumer<K, V> consumer) {
+		this.reset(map.size());
+		map.forEach((k, v) -> {
+			consumer.accept(k, v);
+			this.next();
+		});
 	}
 
 	// Next

@@ -1,4 +1,3 @@
-import dev.quantumfusion.taski.TaskUtil;
 import dev.quantumfusion.taski.builtin.StageTask;
 import dev.quantumfusion.taski.builtin.StepTask;
 import org.junit.jupiter.api.Test;
@@ -30,14 +29,15 @@ public class UsageTest {
 			StepTask models = new StepTask("Models");
 			stageTask.reset(sprites, models);
 			sprites.finish();
+			models.doForEach(list, model -> {
 
-			TaskUtil.forEach(models, list, model -> {
 			});
 		});
 
 
 		main.run(new StepTask("Add Numbers"), stepTask -> {
-			TaskUtil.forEach(stepTask, list, integer -> {
+			stepTask.doForEach(list, integer -> {
+
 			});
 		});
 	}
