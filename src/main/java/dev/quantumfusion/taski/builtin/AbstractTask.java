@@ -11,16 +11,11 @@ public abstract class AbstractTask implements Task {
 	}
 
 	@Nullable
-	public abstract String getNameSuffix();
+	public abstract String getProgressText();
 
 	@Override
 	public String getName() {
-		String suffix = getNameSuffix();
-		if (suffix == null) {
-			return name;
-		} else {
-			return name + " " + suffix;
-		}
+		return name;
 	}
 
 }

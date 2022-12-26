@@ -95,7 +95,7 @@ public class StageTask extends AbstractTask {
 	}
 
 	@Override
-	public @Nullable String getNameSuffix() {
+	public @Nullable String getProgressText() {
 		// Just in case another thread changes this.stages while this function executes.
 		List<Task> stages = this.stages;
 

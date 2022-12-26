@@ -69,7 +69,7 @@ public class CountPollTask extends AbstractTask {
 	}
 
 	@Override
-	public @Nullable String getNameSuffix() {
+	public @Nullable String getProgressText() {
 		if (countFunc == null) {
 			return null;
 		}

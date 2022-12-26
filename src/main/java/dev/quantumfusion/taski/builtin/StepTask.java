@@ -153,7 +153,7 @@ public class StepTask extends AbstractTask {
 
 
 	@Override
-	public @Nullable String getNameSuffix() {
+	public @Nullable String getProgressText() {
 		if (total == 0) {
 			return null;
 		}

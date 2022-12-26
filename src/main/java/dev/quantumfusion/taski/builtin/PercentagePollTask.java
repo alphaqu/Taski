@@ -57,7 +57,7 @@ public class PercentagePollTask extends AbstractTask {
 	}
 
 	@Override
-	public @Nullable String getNameSuffix() {
+	public @Nullable String getProgressText() {
 		if (pollFunc == null) {
 			return null;
 		}

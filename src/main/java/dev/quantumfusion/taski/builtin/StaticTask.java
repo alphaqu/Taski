@@ -37,7 +37,7 @@ public class StaticTask extends AbstractTask {
 	}
 
 	@Override
-	public @Nullable String getNameSuffix() {
+	public @Nullable String getProgressText() {
 		return null;
 	}
 }
