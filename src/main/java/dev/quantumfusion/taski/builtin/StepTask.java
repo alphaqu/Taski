@@ -13,7 +13,6 @@ import java.util.function.Consumer;
  * However, you can reset it with a startValue.
  */
 public class StepTask extends AbstractTask {
-	public static final int UNKNOWN_TOTAL = -1;
 
 	// Counter
 	private int total;
@@ -25,7 +24,7 @@ public class StepTask extends AbstractTask {
 	// Constructors
 	public StepTask(String name) {
 		super(name);
-		this.total = UNKNOWN_TOTAL;
+		this.total = 0;
 	}
 
 	public StepTask(String name, int total) {
@@ -74,7 +73,7 @@ public class StepTask extends AbstractTask {
 	}
 
 	public void reset() {
-		reset(UNKNOWN_TOTAL, 0);
+		reset(0, 0);
 	}
 
 	public void finish() {
@@ -83,9 +82,9 @@ public class StepTask extends AbstractTask {
 
 	// Run
 	public <T extends Task> void run(int amount, T subTask, Consumer<T> function) {
+		this.subTask = subTask;
 		function.accept(subTask);
 		this.current += amount;
-		this.subTask = subTask;
 	}
 
 	public <T extends Task> void run(T subTask, Consumer<T> function) {
@@ -93,9 +92,9 @@ public class StepTask extends AbstractTask {
 	}
 
 	public void run(int amount, Task subTask, Runnable function) {
+		this.subTask = subTask;
 		function.run();
 		this.current += amount;
-		this.subTask = subTask;
 	}
 
 	public void run(Task subTask, Runnable function) {
@@ -130,7 +129,7 @@ public class StepTask extends AbstractTask {
 
 	@Override
 	public boolean done() {
-		if (total == UNKNOWN_TOTAL) {
+		if (total == 0) {
 			return false;
 		}
 
@@ -139,7 +138,7 @@ public class StepTask extends AbstractTask {
 
 	@Override
 	public float getProgress() {
-		if (total == UNKNOWN_TOTAL) {
+		if (total == 0) {
 			return 0;
 		}
 
@@ -155,7 +154,7 @@ public class StepTask extends AbstractTask {
 
 	@Override
 	public @Nullable String getNameSuffix() {
-		if (total == UNKNOWN_TOTAL) {
+		if (total == 0) {
 			return null;
 		}
 
