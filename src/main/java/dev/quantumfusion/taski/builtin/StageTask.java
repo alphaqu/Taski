@@ -1,5 +1,6 @@
 package dev.quantumfusion.taski.builtin;
 
+import dev.quantumfusion.taski.ParentTask;
 import dev.quantumfusion.taski.Task;
 import org.jetbrains.annotations.Nullable;
 
@@ -12,7 +13,7 @@ import java.util.List;
  * The StageTask holds multiple tasks.
  * It yields the same as {@link StepTask} but implementations can use the available information for upcoming tasks.
  */
-public class StageTask extends AbstractTask {
+public class StageTask extends AbstractTask implements ParentTask {
 	private List<Task> stages = new ArrayList<>();
 
 	public StageTask(String name) {
@@ -114,5 +115,15 @@ public class StageTask extends AbstractTask {
 
 
 		return  Math.min((done + 1), stages.size()) + " / " + stages.size();
+	}
+
+	@Override
+	public @Nullable Task getChild() {
+		for (Task stage : stages) {
+			if (!stage.done()) {
+				return stage;
+			}
+		}
+		return null;
 	}
 }

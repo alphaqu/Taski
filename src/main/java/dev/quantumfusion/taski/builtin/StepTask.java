@@ -1,5 +1,6 @@
 package dev.quantumfusion.taski.builtin;
 
+import dev.quantumfusion.taski.ParentTask;
 import dev.quantumfusion.taski.Task;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -15,7 +16,7 @@ import java.util.function.Consumer;
  * The total amount cannot change in the middle of a counting session without also resetting the startValue.
  * However, you can reset it with a startValue.
  */
-public class StepTask extends AbstractTask {
+public class StepTask extends AbstractTask implements ParentTask {
 
 	// Counter
 	private int total;
@@ -194,5 +195,10 @@ public class StepTask extends AbstractTask {
 		}
 
 		return Math.min((current + 1), total) + " / " + total;
+	}
+
+	@Override
+	public @Nullable Task getChild() {
+		return this.subTask;
 	}
 }

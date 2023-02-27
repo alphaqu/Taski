@@ -1,5 +1,6 @@
 package dev.quantumfusion.taski.builtin;
 
+import dev.quantumfusion.taski.ParentTask;
 import dev.quantumfusion.taski.Task;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.Range;
@@ -7,7 +8,7 @@ import org.jetbrains.annotations.Range;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeightedStageTask extends AbstractTask {
+public class WeightedStageTask extends AbstractTask implements ParentTask {
 	private List<WeightedStage> stages = new ArrayList<>();
 	private float totalWeight;
 
@@ -116,6 +117,19 @@ public class WeightedStageTask extends AbstractTask {
 
 
 		return Math.min((done + 1), stages.size()) + " / " + stages.size();
+	}
+
+	@Override
+	public @Nullable Task getChild() {
+		for (WeightedStage stage : stages) {
+			if (stage.task == null) {
+				break;
+			} else if (!stage.task.done()) {
+				return stage.task;
+			}
+		}
+
+		return null;
 	}
 
 	public static class WeightedStage {
