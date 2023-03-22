@@ -1,6 +1,6 @@
-package dev.quantumfusion.taski.builtin;
+package dev.notalpha.taski.builtin;
 
-import dev.quantumfusion.taski.Task;
+import dev.notalpha.taski.Task;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class AbstractTask implements Task {

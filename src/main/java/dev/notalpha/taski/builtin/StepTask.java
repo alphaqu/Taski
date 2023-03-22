@@ -1,7 +1,7 @@
-package dev.quantumfusion.taski.builtin;
+package dev.notalpha.taski.builtin;
 
-import dev.quantumfusion.taski.ParentTask;
-import dev.quantumfusion.taski.Task;
+import dev.notalpha.taski.ParentTask;
+import dev.notalpha.taski.Task;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

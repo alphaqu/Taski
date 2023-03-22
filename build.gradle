@@ -4,10 +4,9 @@ plugins {
     // Publishing
     id 'maven-publish'
     id 'signing'
-    id 'io.github.gradle-nexus.publish-plugin' version '1.1.0'
 }
 
-group 'dev.quantumfusion'
+group 'dev.notalpha'
 version '2.1.0'
 
 java {
@@ -17,6 +16,11 @@ java {
 
 repositories {
     mavenCentral()
+}
+
+
+compileJava {
+    options.release = 8
 }
 
 dependencies {
@@ -30,31 +34,25 @@ test {
 }
 
 // Publishing
-nexusPublishing {
-    repositories {
-        sonatype {
-            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
-            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
-        }
-    }
-}
 publishing {
     repositories {
         maven {
-            credentials {
-                username = sonatypeUsername
-                password = sonatypePassword
+            name = "notalpha"
+            url = "https://notalpha.dev/maven/releases"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
             }
         }
     }
     publications {
-        mavenJava(MavenPublication) {
+        maven(MavenPublication) {
             from components.java
 
             pom {
                 name = project.name
                 description = 'Task Management Library.'
-                url = 'https://github.com/TeamQuantumFusion/Taski'
+                url = 'https://github.com/alphaqu/Taski'
 
                 licenses {
                     license {
@@ -63,9 +61,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:git://github.com/TeamQuantumFusion/Taski.git'
-                    developerConnection = 'scm:git:ssh://github.com:TeamQuantumFusion/Taski.git'
-                    url = 'http://github.com/TeamQuantumFusion/Taski/tree/master'
+                    connection = 'scm:git:git://github.com/alphaqu/Taski.git'
+                    developerConnection = 'scm:git:ssh://github.com:alphaqu/Taski.git'
+                    url = 'http://github.com/alphaqu/Taski/tree/master'
                 }
                 developers {
                     developer {
@@ -81,14 +79,4 @@ publishing {
 
 artifacts {
     archives javadocJar, sourcesJar
-}
-
-signing {
-    setRequired {
-        gradle.taskGraph.allTasks.any {
-            it.equals(PublishToMavenRepository)
-        }
-    }
-    sign publishing.publications.mavenJava
-    sign configurations.archives
 }

@@ -1,5 +1,5 @@
-import dev.quantumfusion.taski.builtin.StageTask;
-import dev.quantumfusion.taski.builtin.StepTask;
+import dev.notalpha.taski.builtin.StageTask;
+import dev.notalpha.taski.builtin.StepTask;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

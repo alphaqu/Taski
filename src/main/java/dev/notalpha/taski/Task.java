@@ -1,4 +1,4 @@
-package dev.quantumfusion.taski;
+package dev.notalpha.taski;
 
 import org.jetbrains.annotations.Range;
 

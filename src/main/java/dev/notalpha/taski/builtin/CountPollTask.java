@@ -1,4 +1,4 @@
-package dev.quantumfusion.taski.builtin;
+package dev.notalpha.taski.builtin;
 
 import org.jetbrains.annotations.Nullable;
 
